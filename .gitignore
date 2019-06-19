@@ -280,6 +280,7 @@ __pycache__/
 
 .vscode/
 *.code-workspace
+/.favorites.json
 /buildtrees/
 /build*/
 /downloads/
