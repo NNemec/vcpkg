@@ -121,7 +121,7 @@ endif()
 
 add_library(libffi ${FFI_SOURCES})
 
-install(TARGETS libffi
+install(TARGETS libffi EXPORT export-targets
     RUNTIME DESTINATION bin
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib)
@@ -132,3 +132,7 @@ if(NOT FFI_SKIP_HEADERS)
         ${CMAKE_BINARY_DIR}/include/ffitarget.h
         DESTINATION include)
 endif()
+
+INSTALL(EXPORT export-targets
+        FILE libffi-config.cmake
+        DESTINATION share/libffi)

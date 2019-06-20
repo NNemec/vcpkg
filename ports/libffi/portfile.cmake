@@ -6,10 +6,12 @@ endif()
 
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
+set(LIBFFI_VERSION 3.1)
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO libffi/libffi
-    REF v3.1
+    REF v${LIBFFI_VERSION}
     SHA512 b214e4a876995f44e0a93bad5bf1b3501ea1fbedafbf33ea600007bd08c9bc965a1f0dd90ea870281c3add6c051febd19aa6cdce36f3ee8ba535ba2c0703153c
     HEAD_REF master
     PATCHES
@@ -28,6 +30,14 @@ vcpkg_configure_cmake(
 )
 
 vcpkg_install_cmake()
+
+vcpkg_fixup_cmake_targets()
+configure_file(
+    ${CMAKE_CURRENT_LIST_DIR}/libffi-config-version.cmake.in
+    ${CURRENT_PACKAGES_DIR}/share/libffi/libffi-config-version.cmake
+    @ONLY
+)
+
 vcpkg_copy_pdbs()
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "static")
