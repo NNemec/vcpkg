@@ -1,0 +1,26 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a30e302..afc2c35 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -883,11 +883,20 @@ ENDIF(PCRE_BUILD_TESTS)
+ # Installation
+ SET(CMAKE_INSTALL_ALWAYS 1)
+ 
+-INSTALL(TARGETS ${targets}
++INSTALL(TARGETS ${targets} EXPORT export-targets
+         RUNTIME DESTINATION bin
+         LIBRARY DESTINATION lib
+         ARCHIVE DESTINATION lib)
+ 
++INSTALL(EXPORT export-targets
++        FILE libpcre-config.cmake
++        NAMESPACE lib::
++        # namespace "lib::" is carefully chosen to make meson's dependency('libpcre') work out of the box:
++        # - dependency('libpcre') used e.g. by glib/meson.build because the pkg_config file is called 'libpcre.pc'
++        # - the target here is called 'pcre'
++        # - meson's cmake dependency resolution matches a default target by removing and '::' so lib::pcre will be picked for dependency("libpcre")
++        DESTINATION share/libpcre)
++
+ INSTALL(FILES ${PCRE_HEADERS} ${PCREPOSIX_HEADERS} DESTINATION include)
+ 
+ FILE(GLOB html ${PROJECT_SOURCE_DIR}/doc/html/*.html)

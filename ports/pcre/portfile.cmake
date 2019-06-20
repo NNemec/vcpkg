@@ -10,7 +10,7 @@ set(PCRE_VERSION 8.41)
 include(vcpkg_common_functions)
 set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/src/pcre-${PCRE_VERSION})
 vcpkg_download_distfile(ARCHIVE
-    URLS "ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-${PCRE_VERSION}.zip" 
+    URLS "ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-${PCRE_VERSION}.zip"
          "https://downloads.sourceforge.net/project/pcre/pcre/${PCRE_VERSION}/pcre-${PCRE_VERSION}.zip"
     FILENAME "pcre-${PCRE_VERSION}.zip"
     SHA512 a3fd57090a5d9ce9d608aeecd59f42f04deea5b86a5c5899bdb25b18d8ec3a89b2b52b62e325c6485a87411eb65f1421604f80c3eaa653bd7dbab05ad22795ea
@@ -20,7 +20,8 @@ vcpkg_extract_source_archive(${ARCHIVE})
 vcpkg_apply_patches(SOURCE_PATH ${SOURCE_PATH}
     PATCHES ${CMAKE_CURRENT_LIST_DIR}/fix-option-2.patch
             ${CMAKE_CURRENT_LIST_DIR}/fix-arm-config-define.patch
-            ${CMAKE_CURRENT_LIST_DIR}/fix-arm64-config-define.patch)
+            ${CMAKE_CURRENT_LIST_DIR}/fix-arm64-config-define.patch
+            ${CMAKE_CURRENT_LIST_DIR}/fix-cmake-install-export.patch)
 
 vcpkg_configure_cmake(
     SOURCE_PATH ${SOURCE_PATH}
@@ -44,6 +45,13 @@ vcpkg_configure_cmake(
 )
 
 vcpkg_install_cmake()
+
+vcpkg_fixup_cmake_targets(CONFIG_PATH share/libpcre TARGET_PATH share/libpcre)
+configure_file(
+    ${CMAKE_CURRENT_LIST_DIR}/libpcre-config-version.cmake.in
+    ${CURRENT_PACKAGES_DIR}/share/libpcre/libpcre-config-version.cmake
+    @ONLY
+)
 
 foreach(FILE ${CURRENT_PACKAGES_DIR}/include/pcre.h ${CURRENT_PACKAGES_DIR}/include/pcreposix.h)
     file(READ ${FILE} PCRE_H)
