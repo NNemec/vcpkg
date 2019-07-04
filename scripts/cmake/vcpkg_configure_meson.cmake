@@ -7,6 +7,7 @@ function(vcpkg_configure_meson)
     # use the same compiler options as in vcpkg_configure_cmake
     set(MESON_COMMON_CFLAGS "${MESON_COMMON_CFLAGS} /DWIN32 /D_WINDOWS /W3 /utf-8")
     set(MESON_COMMON_CXXFLAGS "${MESON_COMMON_CXXFLAGS} /DWIN32 /D_WINDOWS /W3 /utf-8 /GR /EHsc")
+    set(MESON_COMMON_CPPFLAGS "${MESON_COMMON_CPPFLAGS} /I${CURRENT_INSTALLED_DIR}/include")
     
     if(DEFINED VCPKG_CRT_LINKAGE AND VCPKG_CRT_LINKAGE STREQUAL dynamic)
         set(MESON_DEBUG_CFLAGS "${MESON_DEBUG_CFLAGS} /D_DEBUG /MDd /Z7 /Ob0 /Od /RTC1")
@@ -24,6 +25,9 @@ function(vcpkg_configure_meson)
     
     set(MESON_COMMON_LDFLAGS "${MESON_COMMON_LDFLAGS} /DEBUG")
     set(MESON_RELEASE_LDFLAGS "${MESON_RELEASE_LDFLAGS} /INCREMENTAL:NO /OPT:REF /OPT:ICF")
+
+    set(MESON_DEBUG_LDFLAGS "${MESON_DEBUG_LDFLAGS} /LIBPATH:${CURRENT_INSTALLED_DIR}/debug/lib")
+    set(MESON_RELEASE_LDFLAGS "${MESON_RELEASE_LDFLAGS} /LIBPATH:${CURRENT_INSTALLED_DIR}/lib")
     
     # select meson cmd-line options
     list(APPEND _vcm_OPTIONS -Dcmake_prefix_path=${CURRENT_INSTALLED_DIR})
