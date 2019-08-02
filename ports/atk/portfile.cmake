@@ -21,6 +21,7 @@ vcpkg_configure_meson(
     SOURCE_PATH ${SOURCE_PATH}
     OPTIONS
         --backend=ninja
+        -Dintrospection=false   # introspection not yet available from glib port
 )
 
 vcpkg_install_meson()
