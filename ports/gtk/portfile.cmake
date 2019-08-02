@@ -15,9 +15,10 @@ file(COPY ${CMAKE_CURRENT_LIST_DIR}/cmake DESTINATION ${SOURCE_PATH})
 if(NOT EXISTS ${SOURCE_PATH}/gtk/gtkdbusgenerated.h OR NOT EXISTS ${SOURCE_PATH}/gtk/gtkdbusgenerated.c)
     vcpkg_find_acquire_program(PYTHON3)
     set(GLIB_TOOL_DIR ${CURRENT_INSTALLED_DIR}/tools/glib)
+    find_program(GDBUS_CODEGEN NAMES gdbus-codegen gdbus-codegen.py PATHS ${GLIB_TOOL_DIR})
 
     vcpkg_execute_required_process(
-        COMMAND ${PYTHON3} ${GLIB_TOOL_DIR}/gdbus-codegen --interface-prefix org.Gtk. --c-namespace _Gtk --generate-c-code gtkdbusgenerated ./gtkdbusinterfaces.xml
+        COMMAND ${PYTHON3} ${GDBUS_CODEGEN} --interface-prefix org.Gtk. --c-namespace _Gtk --generate-c-code gtkdbusgenerated ./gtkdbusinterfaces.xml
         WORKING_DIRECTORY ${SOURCE_PATH}/gtk
         LOGNAME source-gen)
 endif()
