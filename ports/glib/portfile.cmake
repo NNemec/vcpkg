@@ -34,6 +34,27 @@ vcpkg_configure_meson(
 vcpkg_install_meson()
 vcpkg_copy_pdbs()
 
+# Install unofficial-glib-config.cmake and related files
+include(CMakePackageConfigHelpers)
+set(CMAKECFG_FILE unofficial-glib)
+set(CMAKECFG_NAMESPACE unofficial::glib)
+
+foreach(SUFFIX config targets targets-release targets-debug)
+    configure_package_config_file(
+        ${CMAKE_CURRENT_LIST_DIR}/glib-${SUFFIX}.cmake.in
+        ${CURRENT_PACKAGES_DIR}/share/${CMAKECFG_FILE}/${CMAKECFG_FILE}-${SUFFIX}.cmake
+        INSTALL_DESTINATION ${CURRENT_PACKAGES_DIR}
+    )
+endforeach()
+write_basic_package_version_file(
+    ${CURRENT_PACKAGES_DIR}/share/${CMAKECFG_FILE}/${CMAKECFG_FILE}-config-version.cmake
+    VERSION ${GLIB_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
+# Remove pkgconfig/*.pc files
+file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/lib/pkgconfig)
+
 # Move executables from bin to tools/glib
 file(MAKE_DIRECTORY ${CURRENT_PACKAGES_DIR}/tools/glib)
 

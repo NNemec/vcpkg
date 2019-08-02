@@ -1,0 +1,59 @@
+#----------------------------------------------------------------
+# Generated CMake target import file for configuration "Release".
+#----------------------------------------------------------------
+
+# Commands may need to know the format version.
+set(CMAKE_IMPORT_FILE_VERSION 1)
+
+# Import target "@CMAKECFG_NAMESPACE@::glib" for configuration "Release"
+set_property(TARGET @CMAKECFG_NAMESPACE@::glib APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(@CMAKECFG_NAMESPACE@::glib PROPERTIES
+  IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/glib-2.0.lib"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/glib-2.0-0.dll"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS @CMAKECFG_NAMESPACE@::glib )
+list(APPEND _IMPORT_CHECK_FILES_FOR_@CMAKECFG_NAMESPACE@::glib "${_IMPORT_PREFIX}/lib/glib-2.0.lib" "${_IMPORT_PREFIX}/bin/glib-2.0-0.dll" )
+
+# Import target "@CMAKECFG_NAMESPACE@::gthread" for configuration "Release"
+set_property(TARGET @CMAKECFG_NAMESPACE@::gthread APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(@CMAKECFG_NAMESPACE@::gthread PROPERTIES
+  IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/gthread-2.0.lib"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/gthread-2.0-0.dll"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS @CMAKECFG_NAMESPACE@::gthread )
+list(APPEND _IMPORT_CHECK_FILES_FOR_@CMAKECFG_NAMESPACE@::gthread "${_IMPORT_PREFIX}/lib/gthread-2.0.lib" "${_IMPORT_PREFIX}/bin/gthread-2.0-0.dll" )
+
+# Import target "@CMAKECFG_NAMESPACE@::gobject" for configuration "Release"
+set_property(TARGET @CMAKECFG_NAMESPACE@::gobject APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(@CMAKECFG_NAMESPACE@::gobject PROPERTIES
+  IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/gobject-2.0.lib"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/gobject-2.0-0.dll"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS @CMAKECFG_NAMESPACE@::gobject )
+list(APPEND _IMPORT_CHECK_FILES_FOR_@CMAKECFG_NAMESPACE@::gobject "${_IMPORT_PREFIX}/lib/gobject-2.0.lib" "${_IMPORT_PREFIX}/bin/gobject-2.0-0.dll" )
+
+# Import target "@CMAKECFG_NAMESPACE@::gmodule" for configuration "Release"
+set_property(TARGET @CMAKECFG_NAMESPACE@::gmodule APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(@CMAKECFG_NAMESPACE@::gmodule PROPERTIES
+  IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/gmodule-2.0.lib"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/gmodule-2.0-0.dll"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS @CMAKECFG_NAMESPACE@::gmodule )
+list(APPEND _IMPORT_CHECK_FILES_FOR_@CMAKECFG_NAMESPACE@::gmodule "${_IMPORT_PREFIX}/lib/gmodule-2.0.lib" "${_IMPORT_PREFIX}/bin/gmodule-2.0-0.dll" )
+
+# Import target "@CMAKECFG_NAMESPACE@::gio" for configuration "Release"
+set_property(TARGET @CMAKECFG_NAMESPACE@::gio APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(@CMAKECFG_NAMESPACE@::gio PROPERTIES
+  IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/gio-2.0.lib"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/gio-2.0-0.dll"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS @CMAKECFG_NAMESPACE@::gio )
+list(APPEND _IMPORT_CHECK_FILES_FOR_@CMAKECFG_NAMESPACE@::gio "${_IMPORT_PREFIX}/lib/gio-2.0.lib" "${_IMPORT_PREFIX}/bin/gio-2.0-0.dll" )
+
+# Commands beyond this point should not need to know the version.
+set(CMAKE_IMPORT_FILE_VERSION)
