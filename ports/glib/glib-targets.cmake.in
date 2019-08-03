@@ -88,6 +88,19 @@ unset(_IMPORT_CHECK_TARGETS)
 # This file does not depend on other imported targets which have
 # been exported from the same project but in a separate export set.
 
+if(@CMAKECFG_NAME@ STREQUAL glib-2.0)
+  # add interface link dependency on libintl to the glib-2.0 target
+
+  find_package(unofficial-gettext REQUIRED)
+  #target_link_libraries(glib-2.0 INTERFACE unofficial::gettext::libintl)
+
+  # the target_link_library is not understood by mesonbuild, so we have to use the explicit approach:
+
+  set_target_properties(glib-2.0 PROPERTIES
+    INTERFACE_LINK_LIBRARIES unofficial::gettext::libintl
+  )
+endif()
+
 # Commands beyond this point should not need to know the version.
 set(CMAKE_IMPORT_FILE_VERSION)
 cmake_policy(POP)
